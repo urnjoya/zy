@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free Lorem Ipsum generator - create placeholder text for your designs and mockups.">
+  <title>Lorem Ipsum Generator - Free Online Tool | Toolzy</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="/" class="navbar-logo">Toolzy</a>
+      <div class="navbar-search">
+        <div class="search-input">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search tools...">
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <span class="mobile-menu-icon"></span>
+      </button>
+      <div class="navbar-menu">
+        <ul class="navbar-links">
+          <li><a href="/about.html" class="navbar-link">About</a></li>
+          <li><a href="/contact.html" class="navbar-link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li class="breadcrumb-item"><a href="/" class="breadcrumb-link">Home</a></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-separator">/</span></li>
+        <li class="breadcrumb-item"><a href="/text-tools.html" class="breadcrumb-link">Text Tools</a></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-separator">/</span></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-current">Lorem Ipsum Generator</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="category-quick-nav">
+    <div class="container">
+      <div class="category-buttons">
+        <a href="/text-tools.html" class="category-button active">📝 Text & Writing</a>
+        <a href="/developer-tools.html" class="category-button">💻 Developer Tools</a>
+        <a href="/security-tools.html" class="category-button">🔒 Security & Privacy</a>
+        <a href="/utility-tools.html" class="category-button">🛠️ Random & Utility</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-header page-header-sm">
+    <div class="container">
+      <h1 class="page-title">Lorem Ipsum Generator</h1>
+      <p class="page-description">Generate placeholder text for your designs, mockups, and development projects.</p>
+    </div>
+  </div>
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="tool-interface">
+        <div class="grid grid-cols-2">
+          <div class="form-group">
+            <label class="form-label">Number of Paragraphs:</label>
+            <input type="number" id="paragraph-count" class="form-input" value="3" min="1" max="20">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Words per Paragraph:</label>
+            <input type="number" id="words-count" class="form-input" value="50" min="10" max="200">
+          </div>
+        </div>
+
+        <button onclick="generateLorem()" class="btn btn-primary" style="width: 100%;">Generate Lorem Ipsum</button>
+
+        <div class="result-card">
+          <div class="result-header">
+            <span class="result-label">Generated Text:</span>
+            <button onclick="copyResult()" class="copy-btn" id="copy-btn">📋 Copy</button>
+          </div>
+          <div class="result-content" id="result" style="white-space: pre-wrap; font-family: inherit;">Click "Generate Lorem Ipsum" to create placeholder text...</div>
+        </div>
+      </div>
+
+      <div class="ad-block ad-block-horizontal">
+        <p>Advertisement Space</p>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">What is Lorem Ipsum?</h2>
+        <div class="card-body">
+          <p>Lorem Ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups. It's been the industry standard dummy text since the 1500s.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Frequently Asked Questions</h2>
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>Why use Lorem Ipsum?</span>
+              <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-body">
+                Lorem Ipsum allows designers and developers to focus on visual elements without being distracted by readable content.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h3 class="footer-section-title">Toolzy</h3><p style="color: var(--color-text-secondary); font-size: 0.875rem;">Professional online tools.</p></div>
+        <div><h4 class="footer-section-title">Categories</h4><ul class="footer-links"><li><a href="/text-tools.html" class="footer-link">Text Tools</a></li><li><a href="/developer-tools.html" class="footer-link">Developer Tools</a></li></ul></div>
+        <div><h4 class="footer-section-title">Company</h4><ul class="footer-links"><li><a href="/about.html" class="footer-link">About</a></li><li><a href="/contact.html" class="footer-link">Contact</a></li></ul></div>
+        <div><h4 class="footer-section-title">Legal</h4><ul class="footer-links"><li><a href="/privacy.html" class="footer-link">Privacy</a></li><li><a href="/terms.html" class="footer-link">Terms</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2024 Toolzy. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    const loremWords = ["lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "sed", "do", "eiusmod", "tempor", "incididunt", "ut", "labore", "et", "dolore", "magna", "aliqua", "enim", "ad", "minim", "veniam", "quis", "nostrud", "exercitation", "ullamco", "laboris", "nisi", "aliquip", "ex", "ea", "commodo", "consequat", "duis", "aute", "irure", "in", "reprehenderit", "voluptate", "velit", "esse", "cillum", "fugiat", "nulla", "pariatur", "excepteur", "sint", "occaecat", "cupidatat", "non", "proident", "sunt", "culpa", "qui", "officia", "deserunt", "mollit", "anim", "id", "est", "laborum"];
+
+    function generateLorem() {
+      const paragraphs = parseInt(document.getElementById('paragraph-count').value) || 3;
+      const wordsPerParagraph = parseInt(document.getElementById('words-count').value) || 50;
+      let result = '';
+
+      for (let p = 0; p < paragraphs; p++) {
+        let paragraph = '';
+        for (let w = 0; w < wordsPerParagraph; w++) {
+          const word = loremWords[Math.floor(Math.random() * loremWords.length)];
+          paragraph += (w === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word) + (w === wordsPerParagraph - 1 ? '.' : ' ');
+        }
+        result += paragraph + '\n\n';
+      }
+
+      document.getElementById('result').textContent = result.trim();
+    }
+
+    function copyResult() {
+      const text = document.getElementById('result').textContent;
+      if (text === 'Click "Generate Lorem Ipsum" to create placeholder text...') {
+        showNotification('Generate text first', 'error');
+        return;
+      }
+      copyToClipboard(text, document.getElementById('copy-btn'));
+    }
+  </script>
+</body>
+</html>

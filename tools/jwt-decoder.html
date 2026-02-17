@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free JWT decoder - decode and inspect JSON Web Tokens.">
+  <title>JWT Decoder - Free Online Tool | Toolzy</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="/" class="navbar-logo">Toolzy</a>
+      <div class="navbar-search">
+        <div class="search-input">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search tools...">
+        </div>
+      </div>
+      <button class="mobile-menu-toggle"><span class="mobile-menu-icon"></span></button>
+      <div class="navbar-menu">
+        <ul class="navbar-links">
+          <li><a href="/about.html" class="navbar-link">About</a></li>
+          <li><a href="/contact.html" class="navbar-link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li class="breadcrumb-item"><a href="/" class="breadcrumb-link">Home</a></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-separator">/</span></li>
+        <li class="breadcrumb-item"><a href="/security-tools.html" class="breadcrumb-link">Security Tools</a></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-separator">/</span></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-current">JWT Decoder</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="category-quick-nav">
+    <div class="container">
+      <div class="category-buttons">
+        <a href="/text-tools.html" class="category-button">📝 Text & Writing</a>
+        <a href="/developer-tools.html" class="category-button">💻 Developer Tools</a>
+        <a href="/security-tools.html" class="category-button active">🔒 Security & Privacy</a>
+        <a href="/utility-tools.html" class="category-button">🛠️ Random & Utility</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-header page-header-sm">
+    <div class="container">
+      <h1 class="page-title">JWT Decoder</h1>
+      <p class="page-description">Decode and inspect JSON Web Tokens (JWT).</p>
+    </div>
+  </div>
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="tool-interface">
+        <div class="form-group">
+          <label class="form-label">Paste your JWT:</label>
+          <textarea id="jwt-input" class="form-textarea" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." rows="4"></textarea>
+        </div>
+
+        <button onclick="decodeJWT()" class="btn btn-primary" style="width: 100%;">Decode JWT</button>
+
+        <div id="jwt-output"></div>
+
+        <div class="card mt-lg">
+          <h3 class="card-title">About JWT</h3>
+          <div class="card-body">
+            <p>JSON Web Tokens (JWT) are an open standard (RFC 7519) for securely transmitting information between parties as a JSON object. JWTs consist of three parts: Header, Payload, and Signature.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h3 class="footer-section-title">Toolzy</h3></div>
+        <div><h4 class="footer-section-title">Categories</h4><ul class="footer-links"><li><a href="/security-tools.html" class="footer-link">Security Tools</a></li></ul></div>
+        <div><h4 class="footer-section-title">Company</h4><ul class="footer-links"><li><a href="/about.html" class="footer-link">About</a></li></ul></div>
+        <div><h4 class="footer-section-title">Legal</h4><ul class="footer-links"><li><a href="/privacy.html" class="footer-link">Privacy</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2024 Toolzy.</p></div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    function decodeJWT() {
+      const jwt = document.getElementById('jwt-input').value.trim();
+      const output = document.getElementById('jwt-output');
+
+      if (!jwt) {
+        showNotification('Please enter a JWT', 'error');
+        return;
+      }
+
+      try {
+        const parts = jwt.split('.');
+        if (parts.length !== 3) {
+          throw new Error('Invalid JWT format');
+        }
+
+        const header = JSON.parse(atob(parts[0]));
+        const payload = JSON.parse(atob(parts[1]));
+
+        output.innerHTML = `
+          <div class="result-card mb-md">
+            <div class="result-header">
+              <span class="result-label">Header</span>
+            </div>
+            <div class="result-content">${JSON.stringify(header, null, 2)}</div>
+          </div>
+          <div class="result-card">
+            <div class="result-header">
+              <span class="result-label">Payload</span>
+            </div>
+            <div class="result-content">${JSON.stringify(payload, null, 2)}</div>
+          </div>
+          <div class="alert alert-info mt-lg">
+            <span class="alert-icon">ℹ️</span>
+            <div class="alert-content">
+              <div class="alert-message">Note: This tool only decodes the JWT. It does NOT verify the signature.</div>
+            </div>
+          </div>
+        `;
+      } catch (error) {
+        showNotification('Invalid JWT format', 'error');
+        output.innerHTML = `
+          <div class="alert alert-error">
+            <span class="alert-icon">✗</span>
+            <div class="alert-content">
+              <div class="alert-message">Invalid JWT: ${error.message}</div>
+            </div>
+          </div>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>

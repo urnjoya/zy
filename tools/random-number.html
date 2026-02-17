@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free random number generator - generate random numbers within a specified range.">
+  <title>Random Number Generator - Free Online Tool | Toolzy</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="/" class="navbar-logo">Toolzy</a>
+      <div class="navbar-search">
+        <div class="search-input">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search tools...">
+        </div>
+      </div>
+      <button class="mobile-menu-toggle"><span class="mobile-menu-icon"></span></button>
+      <div class="navbar-menu">
+        <ul class="navbar-links">
+          <li><a href="/about.html" class="navbar-link">About</a></li>
+          <li><a href="/contact.html" class="navbar-link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li class="breadcrumb-item"><a href="/" class="breadcrumb-link">Home</a></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-separator">/</span></li>
+        <li class="breadcrumb-item"><a href="/utility-tools.html" class="breadcrumb-link">Utility Tools</a></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-separator">/</span></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-current">Random Number Generator</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="category-quick-nav">
+    <div class="container">
+      <div class="category-buttons">
+        <a href="/text-tools.html" class="category-button">📝 Text & Writing</a>
+        <a href="/developer-tools.html" class="category-button">💻 Developer Tools</a>
+        <a href="/security-tools.html" class="category-button">🔒 Security & Privacy</a>
+        <a href="/utility-tools.html" class="category-button active">🛠️ Random & Utility</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-header page-header-sm">
+    <div class="container">
+      <h1 class="page-title">Random Number Generator</h1>
+      <p class="page-description">Generate random numbers within a specified range.</p>
+    </div>
+  </div>
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="tool-interface">
+        <div class="grid grid-cols-2">
+          <div class="form-group">
+            <label class="form-label">Minimum Value:</label>
+            <input type="number" id="min-value" class="form-input" value="1">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Maximum Value:</label>
+            <input type="number" id="max-value" class="form-input" value="100">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">How many numbers:</label>
+          <input type="number" id="count" class="form-input" value="1" min="1" max="100">
+        </div>
+
+        <div class="form-group">
+          <label style="display: flex; align-items: center; gap: var(--space-sm); cursor: pointer;">
+            <input type="checkbox" id="unique-numbers">
+            <span>Generate unique numbers (no duplicates)</span>
+          </label>
+        </div>
+
+        <button onclick="generateNumbers()" class="btn btn-primary" style="width: 100%;">Generate Random Numbers</button>
+
+        <div class="result-card">
+          <div class="result-header">
+            <span class="result-label">Generated Numbers:</span>
+            <button onclick="copyNumbers()" class="copy-btn" id="copy-btn">📋 Copy</button>
+          </div>
+          <div id="numbers-output" style="background: white; padding: var(--space-xl); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-align: center; min-height: 100px; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; color: var(--color-primary); flex-wrap: wrap; gap: var(--space-md);">
+            Click "Generate" to create numbers
+          </div>
+        </div>
+
+        <button onclick="generateNumbers()" class="btn btn-secondary mt-md" style="width: 100%;">🔄 Generate Again</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h3 class="footer-section-title">Toolzy</h3></div>
+        <div><h4 class="footer-section-title">Categories</h4><ul class="footer-links"><li><a href="/utility-tools.html" class="footer-link">Utility Tools</a></li></ul></div>
+        <div><h4 class="footer-section-title">Company</h4><ul class="footer-links"><li><a href="/about.html" class="footer-link">About</a></li></ul></div>
+        <div><h4 class="footer-section-title">Legal</h4><ul class="footer-links"><li><a href="/privacy.html" class="footer-link">Privacy</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2024 Toolzy.</p></div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    function generateNumbers() {
+      const min = parseInt(document.getElementById('min-value').value);
+      const max = parseInt(document.getElementById('max-value').value);
+      const count = parseInt(document.getElementById('count').value);
+      const unique = document.getElementById('unique-numbers').checked;
+
+      if (min >= max) {
+        showNotification('Minimum must be less than maximum', 'error');
+        return;
+      }
+
+      if (unique && (max - min + 1) < count) {
+        showNotification('Range too small for unique numbers', 'error');
+        return;
+      }
+
+      const numbers = [];
+      const used = new Set();
+
+      for (let i = 0; i < count; i++) {
+        let num;
+        do {
+          num = Math.floor(Math.random() * (max - min + 1)) + min;
+        } while (unique && used.has(num));
+        
+        if (unique) used.add(num);
+        numbers.push(num);
+      }
+
+      const output = document.getElementById('numbers-output');
+      if (count === 1) {
+        output.innerHTML = numbers[0];
+      } else {
+        output.innerHTML = numbers.join(', ');
+        output.style.fontSize = '1.5rem';
+      }
+    }
+
+    function copyNumbers() {
+      const text = document.getElementById('numbers-output').textContent;
+      if (text === 'Click "Generate" to create numbers') {
+        showNotification('Generate numbers first', 'error');
+        return;
+      }
+      copyToClipboard(text, document.getElementById('copy-btn'));
+    }
+  </script>
+</body>
+</html>

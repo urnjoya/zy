@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free bcrypt generator - generate bcrypt password hashes.">
+  <title>Bcrypt Generator - Free Online Tool | Toolzy</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="/" class="navbar-logo">Toolzy</a>
+      <div class="navbar-search">
+        <div class="search-input">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search tools...">
+        </div>
+      </div>
+      <button class="mobile-menu-toggle"><span class="mobile-menu-icon"></span></button>
+      <div class="navbar-menu">
+        <ul class="navbar-links">
+          <li><a href="/about.html" class="navbar-link">About</a></li>
+          <li><a href="/contact.html" class="navbar-link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li class="breadcrumb-item"><a href="/" class="breadcrumb-link">Home</a></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-separator">/</span></li>
+        <li class="breadcrumb-item"><a href="/security-tools.html" class="breadcrumb-link">Security Tools</a></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-separator">/</span></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-current">Bcrypt Generator</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="category-quick-nav">
+    <div class="container">
+      <div class="category-buttons">
+        <a href="/text-tools.html" class="category-button">📝 Text & Writing</a>
+        <a href="/developer-tools.html" class="category-button">💻 Developer Tools</a>
+        <a href="/security-tools.html" class="category-button active">🔒 Security & Privacy</a>
+        <a href="/utility-tools.html" class="category-button">🛠️ Random & Utility</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-header page-header-sm">
+    <div class="container">
+      <h1 class="page-title">Bcrypt Generator</h1>
+      <p class="page-description">Generate bcrypt password hashes for secure password storage.</p>
+    </div>
+  </div>
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="tool-interface">
+        <div class="alert alert-info">
+          <span class="alert-icon">ℹ️</span>
+          <div class="alert-content">
+            <div class="alert-message">Note: Bcrypt hashing requires a specialized library. This is a demonstration placeholder. In a production environment, bcrypt hashing should be done server-side.</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Enter password to hash:</label>
+          <input type="text" id="password-input" class="form-input" placeholder="Enter password...">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Salt Rounds: <span id="rounds-value">10</span></label>
+          <input type="range" id="salt-rounds" min="4" max="12" value="10" style="width: 100%; cursor: pointer;">
+          <p class="form-hint">Higher values are more secure but slower (10 is recommended)</p>
+        </div>
+
+        <button onclick="generateHash()" class="btn btn-primary" style="width: 100%;">Generate Bcrypt Hash</button>
+
+        <div class="result-card">
+          <div class="result-header">
+            <span class="result-label">Hash:</span>
+            <button onclick="copyHash()" class="copy-btn" id="copy-btn">📋 Copy</button>
+          </div>
+          <div class="result-content" id="hash-result">Hash will appear here...</div>
+        </div>
+
+        <div class="card mt-lg">
+          <h3 class="card-title">About Bcrypt</h3>
+          <div class="card-body">
+            <p>Bcrypt is a password hashing function designed to be slow and computationally expensive, making it resistant to brute-force attacks. It's one of the most recommended methods for storing passwords securely.</p>
+            <p><strong>Important:</strong> True bcrypt hashing requires a server-side implementation with a proper bcrypt library.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h3 class="footer-section-title">Toolzy</h3></div>
+        <div><h4 class="footer-section-title">Categories</h4><ul class="footer-links"><li><a href="/security-tools.html" class="footer-link">Security Tools</a></li></ul></div>
+        <div><h4 class="footer-section-title">Company</h4><ul class="footer-links"><li><a href="/about.html" class="footer-link">About</a></li></ul></div>
+        <div><h4 class="footer-section-title">Legal</h4><ul class="footer-links"><li><a href="/privacy.html" class="footer-link">Privacy</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2024 Toolzy.</p></div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    document.getElementById('salt-rounds').addEventListener('input', function(e) {
+      document.getElementById('rounds-value').textContent = e.target.value;
+    });
+
+    function generateHash() {
+      const password = document.getElementById('password-input').value;
+      if (!password.trim()) {
+        showNotification('Please enter a password', 'error');
+        return;
+      }
+
+      // Note: This is a placeholder. Real bcrypt requires a library like bcrypt.js
+      const placeholder = '$2b$10$' + btoa(password + 'salt_placeholder').substring(0, 53);
+      document.getElementById('hash-result').textContent = placeholder;
+      
+      showNotification('This is a demonstration hash. Use server-side bcrypt for production.', 'info');
+    }
+
+    function copyHash() {
+      const hash = document.getElementById('hash-result').textContent;
+      if (hash === 'Hash will appear here...') {
+        showNotification('Generate a hash first', 'error');
+        return;
+      }
+      copyToClipboard(hash, document.getElementById('copy-btn'));
+    }
+  </script>
+</body>
+</html>

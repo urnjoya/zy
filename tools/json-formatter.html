@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free JSON formatter and validator - beautify, minify, and validate JSON data.">
+  <title>JSON Formatter - Free Online Tool | Toolzy</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="/" class="navbar-logo">Toolzy</a>
+      <div class="navbar-search">
+        <div class="search-input">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search tools...">
+        </div>
+      </div>
+      <button class="mobile-menu-toggle"><span class="mobile-menu-icon"></span></button>
+      <div class="navbar-menu">
+        <ul class="navbar-links">
+          <li><a href="/about.html" class="navbar-link">About</a></li>
+          <li><a href="/contact.html" class="navbar-link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li class="breadcrumb-item"><a href="/" class="breadcrumb-link">Home</a></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-separator">/</span></li>
+        <li class="breadcrumb-item"><a href="/developer-tools.html" class="breadcrumb-link">Developer Tools</a></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-separator">/</span></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-current">JSON Formatter</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="category-quick-nav">
+    <div class="container">
+      <div class="category-buttons">
+        <a href="/text-tools.html" class="category-button">📝 Text & Writing</a>
+        <a href="/developer-tools.html" class="category-button active">💻 Developer Tools</a>
+        <a href="/security-tools.html" class="category-button">🔒 Security & Privacy</a>
+        <a href="/utility-tools.html" class="category-button">🛠️ Random & Utility</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-header page-header-sm">
+    <div class="container">
+      <h1 class="page-title">JSON Formatter</h1>
+      <p class="page-description">Format, validate, and beautify JSON data with syntax highlighting.</p>
+    </div>
+  </div>
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="tool-interface">
+        <div class="form-group">
+          <label class="form-label">Paste your JSON:</label>
+          <textarea id="input-json" class="form-textarea" placeholder='{"name": "example", "value": 123}' rows="10"></textarea>
+        </div>
+
+        <div class="grid grid-cols-2" style="gap: var(--space-sm);">
+          <button onclick="formatJSON()" class="btn btn-primary">Format JSON</button>
+          <button onclick="minifyJSON()" class="btn btn-secondary">Minify JSON</button>
+        </div>
+
+        <div class="result-card">
+          <div class="result-header">
+            <span class="result-label">Result:</span>
+            <button onclick="copyResult()" class="copy-btn" id="copy-btn">📋 Copy</button>
+          </div>
+          <div class="result-content" id="result">Formatted JSON will appear here...</div>
+        </div>
+
+        <div id="validation-message"></div>
+      </div>
+
+      <div class="ad-block ad-block-horizontal">
+        <p>Advertisement Space</p>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">How to Use</h2>
+        <div class="card-body">
+          <ol style="color: var(--color-text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
+            <li>Paste your JSON data into the input field.</li>
+            <li>Click "Format JSON" to beautify and validate your JSON.</li>
+            <li>Click "Minify JSON" to compress your JSON.</li>
+            <li>Copy the result using the copy button.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Frequently Asked Questions</h2>
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>What is JSON?</span>
+              <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-body">
+                JSON (JavaScript Object Notation) is a lightweight data interchange format that's easy for humans to read and write, and easy for machines to parse and generate.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>Why validate JSON?</span>
+              <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-body">
+                Validating JSON ensures your data is properly formatted and will work correctly in applications that consume JSON data.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h3 class="footer-section-title">Toolzy</h3></div>
+        <div><h4 class="footer-section-title">Categories</h4><ul class="footer-links"><li><a href="/developer-tools.html" class="footer-link">Developer Tools</a></li></ul></div>
+        <div><h4 class="footer-section-title">Company</h4><ul class="footer-links"><li><a href="/about.html" class="footer-link">About</a></li></ul></div>
+        <div><h4 class="footer-section-title">Legal</h4><ul class="footer-links"><li><a href="/privacy.html" class="footer-link">Privacy</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2024 Toolzy.</p></div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    function formatJSON() {
+      const input = document.getElementById('input-json').value;
+      const validationMsg = document.getElementById('validation-message');
+      
+      if (!input.trim()) {
+        showNotification('Please enter JSON data', 'error');
+        return;
+      }
+
+      try {
+        const parsed = JSON.parse(input);
+        const formatted = JSON.stringify(parsed, null, 2);
+        document.getElementById('result').textContent = formatted;
+        validationMsg.innerHTML = '<div class="alert alert-success"><span class="alert-icon">✓</span><div class="alert-content"><div class="alert-message">Valid JSON!</div></div></div>';
+      } catch (error) {
+        validationMsg.innerHTML = `<div class="alert alert-error"><span class="alert-icon">✗</span><div class="alert-content"><div class="alert-message">Invalid JSON: ${error.message}</div></div></div>`;
+        showNotification('Invalid JSON format', 'error');
+      }
+    }
+
+    function minifyJSON() {
+      const input = document.getElementById('input-json').value;
+      const validationMsg = document.getElementById('validation-message');
+      
+      if (!input.trim()) {
+        showNotification('Please enter JSON data', 'error');
+        return;
+      }
+
+      try {
+        const parsed = JSON.parse(input);
+        const minified = JSON.stringify(parsed);
+        document.getElementById('result').textContent = minified;
+        validationMsg.innerHTML = '<div class="alert alert-success"><span class="alert-icon">✓</span><div class="alert-content"><div class="alert-message">Valid JSON!</div></div></div>';
+      } catch (error) {
+        validationMsg.innerHTML = `<div class="alert alert-error"><span class="alert-icon">✗</span><div class="alert-content"><div class="alert-message">Invalid JSON: ${error.message}</div></div></div>`;
+        showNotification('Invalid JSON format', 'error');
+      }
+    }
+
+    function copyResult() {
+      const text = document.getElementById('result').textContent;
+      if (text === 'Formatted JSON will appear here...') {
+        showNotification('No result to copy', 'error');
+        return;
+      }
+      copyToClipboard(text, document.getElementById('copy-btn'));
+    }
+  </script>
+</body>
+</html>

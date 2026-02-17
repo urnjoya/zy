@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free word counter tool - count words, characters, sentences, and paragraphs in real-time.">
+  <title>Word Counter - Free Online Tool | Toolzy</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="/" class="navbar-logo">Toolzy</a>
+      
+      <div class="navbar-search">
+        <div class="search-input">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search tools...">
+        </div>
+      </div>
+
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <span class="mobile-menu-icon"></span>
+      </button>
+
+      <div class="navbar-menu">
+        <ul class="navbar-links">
+          <li><a href="/about.html" class="navbar-link">About</a></li>
+          <li><a href="/contact.html" class="navbar-link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li class="breadcrumb-item"><a href="/" class="breadcrumb-link">Home</a></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-separator">/</span></li>
+        <li class="breadcrumb-item"><a href="/text-tools.html" class="breadcrumb-link">Text Tools</a></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-separator">/</span></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-current">Word Counter</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CATEGORY QUICK NAV -->
+  <div class="category-quick-nav">
+    <div class="container">
+      <div class="category-buttons">
+        <a href="/text-tools.html" class="category-button active">📝 Text & Writing</a>
+        <a href="/developer-tools.html" class="category-button">💻 Developer Tools</a>
+        <a href="/security-tools.html" class="category-button">🔒 Security & Privacy</a>
+        <a href="/utility-tools.html" class="category-button">🛠️ Random & Utility</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOL PAGE HEADER -->
+  <div class="page-header page-header-sm">
+    <div class="container">
+      <h1 class="page-title">Word Counter</h1>
+      <p class="page-description">Count words, characters, sentences, and paragraphs in your text with real-time analysis.</p>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="grid grid-cols-1" style="grid-template-columns: 1fr; gap: var(--space-xl);">
+        <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-xl);">
+          <!-- TOOL INTERFACE -->
+          <div class="tool-interface">
+            <div class="form-group">
+              <label class="form-label">Enter or paste your text:</label>
+              <textarea 
+                id="input-text" 
+                class="form-textarea" 
+                placeholder="Type or paste your text here..."
+                rows="12"
+                style="font-family: inherit;"
+              ></textarea>
+            </div>
+
+            <!-- STATISTICS GRID -->
+            <div class="grid grid-cols-4" style="margin-top: var(--space-lg);">
+              <div class="card text-center">
+                <div style="font-size: 2rem; font-weight: 700; color: var(--color-primary); margin-bottom: var(--space-xs);" id="word-count">0</div>
+                <div style="color: var(--color-text-secondary); font-size: 0.875rem;">Words</div>
+              </div>
+              <div class="card text-center">
+                <div style="font-size: 2rem; font-weight: 700; color: var(--color-primary); margin-bottom: var(--space-xs);" id="char-count">0</div>
+                <div style="color: var(--color-text-secondary); font-size: 0.875rem;">Characters</div>
+              </div>
+              <div class="card text-center">
+                <div style="font-size: 2rem; font-weight: 700; color: var(--color-primary); margin-bottom: var(--space-xs);" id="sentence-count">0</div>
+                <div style="color: var(--color-text-secondary); font-size: 0.875rem;">Sentences</div>
+              </div>
+              <div class="card text-center">
+                <div style="font-size: 2rem; font-weight: 700; color: var(--color-primary); margin-bottom: var(--space-xs);" id="paragraph-count">0</div>
+                <div style="color: var(--color-text-secondary); font-size: 0.875rem;">Paragraphs</div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2" style="margin-top: var(--space-md);">
+              <div class="card text-center">
+                <div style="font-size: 1.5rem; font-weight: 600; color: var(--color-text-primary); margin-bottom: var(--space-xs);" id="read-time">0 min</div>
+                <div style="color: var(--color-text-secondary); font-size: 0.875rem;">Reading Time</div>
+              </div>
+              <div class="card text-center">
+                <div style="font-size: 1.5rem; font-weight: 600; color: var(--color-text-primary); margin-bottom: var(--space-xs);" id="speak-time">0 min</div>
+                <div style="color: var(--color-text-secondary); font-size: 0.875rem;">Speaking Time</div>
+              </div>
+            </div>
+
+            <button onclick="clearText()" class="btn btn-secondary mt-lg" style="width: 100%;">Clear Text</button>
+          </div>
+
+          <!-- Ad Block -->
+          <div class="ad-block ad-block-horizontal">
+            <p>Advertisement Space</p>
+          </div>
+
+          <!-- HOW TO USE SECTION -->
+          <div class="card">
+            <h2 class="card-title">How to Use the Word Counter</h2>
+            <div class="card-body">
+              <ol style="color: var(--color-text-secondary); line-height: 1.8; padding-left: var(--space-lg);">
+                <li>Type or paste your text into the text area above.</li>
+                <li>The counter will automatically update as you type.</li>
+                <li>View real-time statistics including word count, character count, sentences, and paragraphs.</li>
+                <li>See estimated reading and speaking times for your content.</li>
+                <li>Click "Clear Text" to start over.</li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- EXAMPLE SECTION -->
+          <div class="card">
+            <h2 class="card-title">Example Use Cases</h2>
+            <div class="card-body">
+              <ul style="color: var(--color-text-secondary); line-height: 1.8; list-style: none; padding: 0;">
+                <li>✓ <strong>Writers:</strong> Track word count for articles, essays, and stories.</li>
+                <li>✓ <strong>Students:</strong> Ensure assignments meet word count requirements.</li>
+                <li>✓ <strong>SEO Professionals:</strong> Optimize content length for search engines.</li>
+                <li>✓ <strong>Social Media:</strong> Stay within character limits for posts.</li>
+                <li>✓ <strong>Speakers:</strong> Estimate presentation duration based on word count.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ SECTION -->
+          <div class="card">
+            <h2 class="card-title">Frequently Asked Questions</h2>
+            <div class="accordion">
+              <div class="accordion-item">
+                <button class="accordion-header">
+                  <span>How accurate is the word counter?</span>
+                  <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                  <div class="accordion-body">
+                    The word counter is highly accurate and follows standard word counting rules. It counts sequences of characters separated by spaces as words.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button class="accordion-header">
+                  <span>How is reading time calculated?</span>
+                  <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                  <div class="accordion-body">
+                    Reading time is calculated based on an average reading speed of 200-250 words per minute, which is typical for adult readers.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button class="accordion-header">
+                  <span>Is my text data stored or saved?</span>
+                  <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                  <div class="accordion-body">
+                    No, all processing happens locally in your browser. Your text is never sent to our servers or stored anywhere. It's completely private and secure.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED TOOLS -->
+  <section class="section bg-secondary">
+    <div class="container">
+      <h2 class="text-center mb-lg">Related Tools</h2>
+      <div class="grid grid-cols-4">
+        <a href="/tools/case-converter.html" class="tool-card card">
+          <div class="tool-card-icon">Aa</div>
+          <div class="tool-card-body">
+            <h3 class="card-title">Case Converter</h3>
+            <p class="card-description">Convert text between different cases.</p>
+          </div>
+          <span class="tool-card-link">Use Tool →</span>
+        </a>
+
+        <a href="/tools/lorem-ipsum.html" class="tool-card card">
+          <div class="tool-card-icon">📄</div>
+          <div class="tool-card-body">
+            <h3 class="card-title">Lorem Ipsum Generator</h3>
+            <p class="card-description">Generate placeholder text.</p>
+          </div>
+          <span class="tool-card-link">Use Tool →</span>
+        </a>
+
+        <a href="/tools/text-reverser.html" class="tool-card card">
+          <div class="tool-card-icon">↔️</div>
+          <div class="tool-card-body">
+            <h3 class="card-title">Text Reverser</h3>
+            <p class="card-description">Reverse text or words.</p>
+          </div>
+          <span class="tool-card-link">Use Tool →</span>
+        </a>
+
+        <a href="/tools/markdown-preview.html" class="tool-card card">
+          <div class="tool-card-icon">📝</div>
+          <div class="tool-card-body">
+            <h3 class="card-title">Markdown Preview</h3>
+            <p class="card-description">Preview markdown content.</p>
+          </div>
+          <span class="tool-card-link">Use Tool →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 class="footer-section-title">Toolzy</h3>
+          <p style="color: var(--color-text-secondary); font-size: 0.875rem; margin-bottom: var(--space-md);">
+            Professional online tools for everyone. Fast, free, and privacy-focused.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-section-title">Categories</h4>
+          <ul class="footer-links">
+            <li><a href="/text-tools.html" class="footer-link">Text & Writing Tools</a></li>
+            <li><a href="/developer-tools.html" class="footer-link">Developer Tools</a></li>
+            <li><a href="/security-tools.html" class="footer-link">Security & Privacy</a></li>
+            <li><a href="/utility-tools.html" class="footer-link">Random & Utility</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-section-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="/about.html" class="footer-link">About Us</a></li>
+            <li><a href="/contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-section-title">Legal</h4>
+          <ul class="footer-links">
+            <li><a href="/privacy.html" class="footer-link">Privacy Policy</a></li>
+            <li><a href="/terms.html" class="footer-link">Terms & Conditions</a></li>
+            <li><a href="/disclaimer.html" class="footer-link">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 Toolzy. All rights reserved. Built with care for productivity.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    // Word Counter Logic
+    const inputText = document.getElementById('input-text');
+    
+    function updateCounts() {
+      const text = inputText.value;
+      
+      // Count words
+      const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+      const wordCount = text.trim() === '' ? 0 : words.length;
+      
+      // Count characters
+      const charCount = text.length;
+      
+      // Count sentences
+      const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+      const sentenceCount = sentences.length;
+      
+      // Count paragraphs
+      const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0);
+      const paragraphCount = paragraphs.length;
+      
+      // Calculate reading time (average 200 words per minute)
+      const readTime = Math.ceil(wordCount / 200);
+      
+      // Calculate speaking time (average 130 words per minute)
+      const speakTime = Math.ceil(wordCount / 130);
+      
+      // Update UI
+      document.getElementById('word-count').textContent = wordCount.toLocaleString();
+      document.getElementById('char-count').textContent = charCount.toLocaleString();
+      document.getElementById('sentence-count').textContent = sentenceCount.toLocaleString();
+      document.getElementById('paragraph-count').textContent = paragraphCount.toLocaleString();
+      document.getElementById('read-time').textContent = readTime + ' min';
+      document.getElementById('speak-time').textContent = speakTime + ' min';
+    }
+    
+    function clearText() {
+      inputText.value = '';
+      updateCounts();
+    }
+    
+    // Update counts on input
+    inputText.addEventListener('input', updateCounts);
+    
+    // Initial update
+    updateCounts();
+  </script>
+</body>
+</html>

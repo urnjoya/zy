@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free Markdown preview tool - preview markdown content with live rendering.">
+  <title>Markdown Preview - Free Online Tool | Toolzy</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <style>
+    .markdown-preview {
+      padding: var(--space-lg);
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      min-height: 300px;
+    }
+    .markdown-preview h1 { font-size: 2rem; margin-top: var(--space-xl); margin-bottom: var(--space-md); }
+    .markdown-preview h2 { font-size: 1.75rem; margin-top: var(--space-lg); margin-bottom: var(--space-md); }
+    .markdown-preview h3 { font-size: 1.5rem; margin-top: var(--space-lg); margin-bottom: var(--space-sm); }
+    .markdown-preview p { margin-bottom: var(--space-md); }
+    .markdown-preview ul, .markdown-preview ol { margin-bottom: var(--space-md); margin-left: var(--space-xl); }
+    .markdown-preview code { background: var(--color-bg-tertiary); padding: 2px 6px; border-radius: var(--radius-sm); font-family: var(--font-mono); }
+    .markdown-preview pre { background: var(--color-bg-tertiary); padding: var(--space-md); border-radius: var(--radius-md); overflow-x: auto; margin-bottom: var(--space-md); }
+    .markdown-preview pre code { background: none; padding: 0; }
+    .markdown-preview blockquote { border-left: 4px solid var(--color-primary); padding-left: var(--space-md); margin: var(--space-md) 0; color: var(--color-text-secondary); }
+    .markdown-preview a { color: var(--color-primary); text-decoration: underline; }
+    .markdown-preview hr { border: none; border-top: 1px solid var(--color-border); margin: var(--space-xl) 0; }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="/" class="navbar-logo">Toolzy</a>
+      <div class="navbar-search">
+        <div class="search-input">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search tools...">
+        </div>
+      </div>
+      <button class="mobile-menu-toggle"><span class="mobile-menu-icon"></span></button>
+      <div class="navbar-menu">
+        <ul class="navbar-links">
+          <li><a href="/about.html" class="navbar-link">About</a></li>
+          <li><a href="/contact.html" class="navbar-link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li class="breadcrumb-item"><a href="/" class="breadcrumb-link">Home</a></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-separator">/</span></li>
+        <li class="breadcrumb-item"><a href="/text-tools.html" class="breadcrumb-link">Text Tools</a></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-separator">/</span></li>
+        <li class="breadcrumb-item"><span class="breadcrumb-current">Markdown Preview</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="category-quick-nav">
+    <div class="container">
+      <div class="category-buttons">
+        <a href="/text-tools.html" class="category-button active">📝 Text & Writing</a>
+        <a href="/developer-tools.html" class="category-button">💻 Developer Tools</a>
+        <a href="/security-tools.html" class="category-button">🔒 Security & Privacy</a>
+        <a href="/utility-tools.html" class="category-button">🛠️ Random & Utility</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-header page-header-sm">
+    <div class="container">
+      <h1 class="page-title">Markdown Preview</h1>
+      <p class="page-description">Preview your markdown content with live rendering.</p>
+    </div>
+  </div>
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="grid grid-cols-2">
+        <div>
+          <div class="form-group">
+            <label class="form-label">Write Markdown:</label>
+            <textarea id="markdown-input" class="form-textarea" rows="20" placeholder="# Heading&#10;&#10;Write your **markdown** here..."></textarea>
+          </div>
+        </div>
+        <div>
+          <div class="form-group">
+            <label class="form-label">Live Preview:</label>
+            <div id="markdown-output" class="markdown-preview">Preview will appear here...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ad-block ad-block-horizontal"><p>Advertisement Space</p></div>
+
+      <div class="card">
+        <h2 class="card-title">Markdown Syntax Guide</h2>
+        <div class="card-body">
+          <ul style="color: var(--color-text-secondary); line-height: 2; list-style: none; padding: 0;">
+            <li><code># Heading 1</code> - Large heading</li>
+            <li><code>## Heading 2</code> - Medium heading</li>
+            <li><code>**bold text**</code> - Bold text</li>
+            <li><code>*italic text*</code> - Italic text</li>
+            <li><code>[link](url)</code> - Hyperlink</li>
+            <li><code>- item</code> - Bullet list</li>
+            <li><code>1. item</code> - Numbered list</li>
+            <li><code>`code`</code> - Inline code</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h3 class="footer-section-title">Toolzy</h3></div>
+        <div><h4 class="footer-section-title">Categories</h4><ul class="footer-links"><li><a href="/text-tools.html" class="footer-link">Text Tools</a></li></ul></div>
+        <div><h4 class="footer-section-title">Company</h4><ul class="footer-links"><li><a href="/about.html" class="footer-link">About</a></li></ul></div>
+        <div><h4 class="footer-section-title">Legal</h4><ul class="footer-links"><li><a href="/privacy.html" class="footer-link">Privacy</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2024 Toolzy.</p></div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    const input = document.getElementById('markdown-input');
+    const output = document.getElementById('markdown-output');
+
+    function renderMarkdown() {
+      let text = input.value;
+      if (!text.trim()) {
+        output.innerHTML = '<em style="color: var(--color-text-tertiary);">Preview will appear here...</em>';
+        return;
+      }
+
+      // Basic markdown rendering
+      text = escapeHtml(text);
+      
+      // Headers
+      text = text.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+      text = text.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+      text = text.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+      
+      // Bold
+      text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      
+      // Italic
+      text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+      
+      // Code blocks
+      text = text.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+      
+      // Inline code
+      text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
+      
+      // Links
+      text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+      
+      // Line breaks
+      text = text.replace(/\n\n/g, '</p><p>');
+      text = '<p>' + text + '</p>';
+      
+      // Lists
+      text = text.replace(/<p>- (.*?)<\/p>/g, '<ul><li>$1</li></ul>');
+      text = text.replace(/<\/ul><ul>/g, '');
+      
+      output.innerHTML = text;
+    }
+
+    input.addEventListener('input', debounce(renderMarkdown, 300));
+    renderMarkdown();
+  </script>
+</body>
+</html>
